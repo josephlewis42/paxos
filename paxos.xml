@@ -1,0 +1,76 @@
+<binparser version='1.0'>
+	<generation>
+		<namespace>paxos</namespace>
+		<typedefs>
+#define UDP_PACKET_SIZE_BYTES 65535
+		</typedefs>
+	</generation>
+	<header>
+        <field type="uint32_t" name="type" />
+	</header>
+
+	<message name="Client_Update" field="type" eq="1">
+	    <field type="uint32_t" name="client_id" />
+	    <field type="uint32_t" name="server_id" />
+	    <field type="uint32_t" name="timestamp" />
+	    <field type="uint32_t" name="update" />
+	</message>
+
+	<message name="View_Change" field="type" eq="2">
+	    <field type="uint32_t" name="server_id" />
+	    <field type="uint32_t" name="attempted" />
+	</message>
+
+	<message name="VC_Proof" field="type" eq="3">
+	    <field type="uint32_t" name="server_id" />
+	    <field type="uint32_t" name="installed" />
+	</message>
+
+
+	<message name="Prepare" field="type" eq="4">
+	    <field type="uint32_t" name="server_id" />
+	    <field type="uint32_t" name="view" />
+	    <field type="uint32_t" name="local_aru" />
+	</message>
+
+	<message name="Proposal" field="type" eq="5">
+	    <field type="uint32_t" name="server_id" />
+	    <field type="uint32_t" name="view" />
+	    <field type="uint32_t" name="seq" />
+	    <field type="Client_Update_t" name="update" />
+	</message>
+
+	<message name="Accept" field="type" eq="6">
+	    <field type="uint32_t" name="server_id" />
+	    <field type="uint32_t" name="view" />
+	    <field type="uint32_t" name="seq" />
+	</message>
+
+	<message name="Globally_Ordered_Update" field="type" eq="7">
+	    <field type="uint32_t" name="server_id" />
+	    <field type="uint32_t" name="seq" />
+	    <field type="Client_Update_t" name="update" />
+	</message>
+
+
+	<message name="Prepare_OK" field="type" eq="8">
+	    <field type="uint32_t" name="server_id" />
+	    <field type="uint32_t" name="view" />
+
+	    <field type="uint32_t" name="total_proposals" />
+	    <!-- the system inserts _t after typdedefs -->
+	    <buffer type="Proposal_t" name="proposals" length="total_proposals" maxlength="(UDP_PACKET_SIZE_BYTES / sizeof(Proposal_t))" />
+
+	    <field type="uint32_t" name="total_globally_ordered_updates" />
+	    <!-- the system inserts _t after typdedefs -->
+	    <buffer type="Globally_Ordered_Update_t" name="globally_ordered_updates"
+	            length="total_globally_ordered_updates"
+	            maxlength="(UDP_PACKET_SIZE_BYTES / sizeof(Globally_Ordered_Update_t))" />
+	</message>
+
+	<message name="UnivAck" field="type" eq="1024">
+		<field type="uint32_t" name="size" />
+		<buffer type="char" name="packet" length="size" maxlength="UDP_PACKET_SIZE_BYTES" />
+	</message>
+
+</binparser>

@@ -1,0 +1,41 @@
+CS 505 Project 2 Rubric
+========================
+Only the marks made by the TA signify points lost or awarded
+
+
+Name: 
+
++=========+
+| Scores  |
++=========+
+	[16/16]	Submission packages
+			[2/2] (a) source code
+			[2/2] (b) Makefile
+			[2/2] (c) results for malicious commander
+			[2/2] (d) results for malicious lieutenant
+			[8/8] (e) Report
+				[6/6]	- state diagrams
+				[2/2]	- others
+
+	[4/4] 	Does make and run?
+			[2/2] Compile
+			[2/2] Run on Turret
+
+	[30/30]	Pass benign test (using 4 VMs)
+			[5/5] with msg counts 10, 0, 0, 0
+			[5/5] with msg counts 10, 10, 0, 0
+			[5/5] with msg counts 10, 10, 10, 0
+			[5/5] with msg counts 10, 10, 10, 10
+			[5/5] with msg counts -1, 0, 0, 0
+			[5/5] with msg counts 30, 0, 30, 0
+ 
+	[25/25]	Pass 10 malicious test cases with 1 malicious sender
+			[10 = 2.5*10] each worth 2.5 points
+
+	[25/25]	Pass 10 malicious test cases with 2 malicious senders
+			[10 = 2.5*10] each worth 2.5 point
+			
+------------------------------------------
+Total  [ ] out of 100
+
+

@@ -1,0 +1,11 @@
+README
+======
+
+Joseph Lewis
+
+Please compile this project on a machine that allows the auto keyword and
+preferably c++11 extensions (these are on the turret VMs but barely).
+
+The servers must be executed and up before running the client as the client
+handler does not start in the servers until all servers are up for a few
+seconds and have established initial contact with one another.
